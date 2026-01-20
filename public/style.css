@@ -1,0 +1,574 @@
+/* =========================
+   PRO MINIMAL UI (Studio)
+   public/style.css
+========================= */
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* THEME */
+:root {
+    --bg: #f5f5f5;
+    --surface: #ffffff;
+    --text: #0a0a0a;
+    --muted: #6b6b6b;
+    --border: #e6e6e6;
+    --soft: #f7f7f7;
+
+    --black: #0a0a0a;
+    --white: #ffffff;
+
+    --shadow: 0 10px 30px rgba(0,0,0,0.06);
+    --radius: 18px;
+    --radius-sm: 12px;
+}
+
+/* BASE */
+body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 26px;
+    line-height: 1.4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* =========================
+   HERO HEADER (NEGRO PRO)
+   Usa: <header class="hero">...</header>
+========================= */
+.hero {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 22px;
+    padding: 52px 52px 56px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+/* “grain” súper sutil (look premium) */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 35%),
+      radial-gradient(circle at 80% 30%, rgba(255,255,255,0.06), transparent 40%),
+      radial-gradient(circle at 40% 80%, rgba(255,255,255,0.05), transparent 45%);
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-family: "DM Sans", system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    margin-bottom: 18px;
+}
+
+/* NAV PRO */
+nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.hero nav a {
+    padding: 9px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    text-decoration: none;
+    color: rgba(255,255,255,0.82);
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: all 0.18s ease;
+    background: transparent;
+}
+
+.hero nav a:hover {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+}
+
+.hero nav a.active {
+    background: var(--white);
+    color: var(--black);
+    border-color: var(--white);
+}
+
+/* Si tus otras páginas usan nav fuera del hero */
+header:not(.hero) nav a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    text-decoration: none;
+    color: #444;
+    border: 1px solid var(--border);
+    transition: all 0.18s ease;
+    background: transparent;
+}
+
+header:not(.hero) nav a:hover,
+header:not(.hero) nav a.active {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+}
+
+/* =========================
+   DEFAULT HEADER (si aún lo usas)
+========================= */
+header:not(.hero) {
+    background: var(--surface);
+    padding: 22px 28px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+}
+
+header:not(.hero) h1 {
+    font-size: 26px;
+    font-weight: 650;
+    letter-spacing: -0.4px;
+    margin-bottom: 14px;
+}
+
+/* =========================
+   LOGOS SECTION (PRO)
+========================= */
+
+.logos-section {
+    background: var(--black);
+    border-radius: 22px;
+    padding: 36px 32px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+}
+
+.logos-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 56px;
+    flex-wrap: wrap;
+}
+
+.logos-track img {
+    height: 38px;
+    max-width: 140px;
+    object-fit: contain;
+    opacity: 0.78;
+    filter: grayscale(100%);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.logos-track img:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    filter: grayscale(0%);
+}
+
+/* =========================
+   CARDS
+========================= */
+.card {
+    background: var(--surface);
+    padding: 32px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 22px;
+}
+
+.card h2 {
+    font-size: 20px;
+    font-weight: 650;
+    letter-spacing: -0.2px;
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 12px;
+}
+
+/* =========================
+   ALERTS
+========================= */
+.alert {
+    padding: 14px 16px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    border: 1px solid var(--border);
+}
+
+.alert-success {
+    background: #ecfdf3;
+    color: #065f46;
+    border-color: #a7f3d0;
+}
+
+.alert-error {
+    background: #fef2f2;
+    color: #7f1d1d;
+    border-color: #fecaca;
+}
+
+/* =========================
+   TABLE PRO
+========================= */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 14px;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+thead {
+    background: #fafafa;
+}
+
+th, td {
+    padding: 14px 14px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+th {
+    font-weight: 600;
+    color: #6a6a6a;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+tbody tr:hover {
+    background: #fafafa;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================
+   BADGES (ESTADOS)
+========================= */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.badge-pendiente {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fed7aa;
+}
+
+.badge-en.progreso,
+.badge-en\ progreso {
+    background: #eff6ff;
+    color: #1e40af;
+    border-color: #bfdbfe;
+}
+
+.badge-completada {
+    background: #ecfdf3;
+    color: #065f46;
+    border-color: #a7f3d0;
+}
+
+/* =========================
+   BUTTONS (PILL)
+========================= */
+.actions {
+    white-space: nowrap;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 13px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    margin-right: 6px;
+}
+
+.btn-primary {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+}
+
+.btn-primary:hover {
+    opacity: 0.88;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #444;
+    border-color: #d4d4d4;
+}
+
+.btn-secondary:hover {
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
+}
+
+.btn-edit {
+    background: #fff7ed;
+    color: #9a3412;
+    border-color: #fed7aa;
+}
+
+.btn-edit:hover {
+    background: #fed7aa;
+}
+
+.btn-delete {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+.btn-delete:hover {
+    background: #fecaca;
+}
+
+/* =========================
+   FORMS (PRO INPUTS)
+========================= */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: #3a3a3a;
+    font-size: 13px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group input[type="date"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #dedede;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: rgba(0,0,0,0.55);
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.08);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 6px;
+    color: #7a7a7a;
+    font-size: 12px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-actions {
+    margin-top: 22px;
+    display: flex;
+    gap: 10px;
+}
+
+/* =========================
+   EMPTY STATE
+========================= */
+.empty-state {
+    text-align: center;
+    padding: 44px 18px;
+    color: #777;
+}
+
+.empty-state a {
+    color: var(--black);
+    font-weight: 650;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.empty-state a:hover {
+    border-bottom-color: rgba(0,0,0,0.6);
+}
+
+/* =========================
+   INFO / LOGS
+========================= */
+.info {
+    background: #f9fafb;
+    border-left: 3px solid var(--black);
+    border-radius: 12px;
+}
+
+.info-box {
+    background: #fafafa;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.logs-container {
+    max-height: 600px;
+    overflow-y: auto;
+    background: #fafafa;
+    padding: 16px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+}
+
+.log-entry {
+    background: #ffffff;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    border-left: 3px solid var(--black);
+    border: 1px solid #ededed;
+}
+
+.log-entry pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+    color: #2a2a2a;
+}
+
+pre {
+    background: #fafafa;
+    padding: 14px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 13px;
+    border: 1px solid var(--border);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    body {
+        padding: 18px;
+    }
+
+    .hero {
+        padding: 36px 22px 40px;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .logos-track {
+        gap: 32px;
+    }
+
+    .logos-track img {
+        height: 30px;
+    }
+
+    .card {
+        padding: 22px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 10px;
+    }
+
+    .hero .logos-track {
+       margin-top: 36px;
+       justify-content: flex-start;
+    }
+
+    .hero .logos-track img {
+       height: 34px;
+       opacity: 0.65;
+       filter: grayscale(100%) brightness(1.2);
+    }
+
+    .hero .logos-track img:hover {
+       opacity: 1;
+       filter: grayscale(0%) brightness(1);
+    }
+
+}
+
+

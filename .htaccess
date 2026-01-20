@@ -1,0 +1,18 @@
+RewriteEngine On
+
+# 0) Evitar loops: si ya estamos en /public, no reescribir de nuevo
+RewriteRule ^public/ - [L]
+
+# 1) Bloquear acceso directo a carpetas sensibles
+RewriteRule ^(config|includes|logs)/ - [F,L]
+
+# 2) API primero (NO debe ir a public)
+RewriteRule ^api/tareas/?([0-9]+)?$ api/tareas.php [QSA,L]
+
+# 3) Si piden la raíz /becall-app/ -> mandar a public/
+RewriteRule ^$ public/ [L]
+
+# 4) Todo lo demás que NO exista como archivo/carpeta real -> a public/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ public/$1 [L]

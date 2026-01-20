@@ -1,0 +1,18 @@
+[2026-01-19 22:37:38] Acción: Configuración actualizada | Info: Webhook URL: https://webhook.site/f7a5b841-4cd6-4cbe-96ba-411ca45f9707
+[2026-01-19 22:37:48] Acción: Configuración actualizada | Info: Webhook URL: https://webhook.site/f7a5b841-4cd6-4cbe-96ba-411ca45f9707
+[2026-01-19 22:37:50] Acción: Configuración actualizada | Info: Webhook URL: https://webhook.site/f7a5b841-4cd6-4cbe-96ba-411ca45f9707
+[2026-01-19 22:46:13] Acción: Webhook enviado | Info: Acción: create, HTTP Code: 200
+[2026-01-19 23:34:13] Acción: Tarea creada | Info: ID: 4, Título: xx
+[2026-01-19 23:34:15] Acción: Webhook enviado | Info: Acción: create, HTTP Code: 200
+[2026-01-19 23:34:57] Acción: Tarea actualizada | Info: ID: 4, Título: xxxxxxx
+[2026-01-19 23:34:58] Acción: Webhook enviado | Info: Acción: update, HTTP Code: 200
+[2026-01-19 23:35:23] Acción: Tarea eliminada | Info: ID: 4, Título: xxxxxxx
+[2026-01-19 23:35:25] Acción: Webhook enviado | Info: Acción: delete, HTTP Code: 200
+[2026-01-19 23:36:04] Acción: Tarea creada | Info: ID: 5, Título: xxxxxxxxxxxxxx
+[2026-01-19 23:36:05] Acción: Webhook enviado | Info: Acción: create, HTTP Code: 200
+[2026-01-19 23:36:12] Acción: Tarea actualizada | Info: ID: 5, Título: xxxxxxxxxxxxxx
+[2026-01-19 23:36:13] Acción: Webhook enviado | Info: Acción: update, HTTP Code: 200
+[2026-01-20 10:06:33] Acción: Tarea creada | Info: ID: 6, Título: prueba1
+[2026-01-20 10:06:34] Acción: Webhook enviado | Info: Acción: create, HTTP Code: 200
+[2026-01-20 10:07:02] Acción: Tarea actualizada | Info: ID: 6, Título: prueba1
+[2026-01-20 10:07:04] Acción: Webhook enviado | Info: Acción: update, HTTP Code: 200
