@@ -1,0 +1,17 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs / runtime
+logs/*.log
+logs/*.txt
+
+# Env / secrets
+.env
+.env.*
+
+# Dependencias (si luego usas composer o node)
+vendor/
+node_modules/
