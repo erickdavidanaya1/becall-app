@@ -1,304 +1,215 @@
-# ToDo List - Aplicación de Gestión de Tareas
+# 📋 Becall – Gestión de Tareas (PHP)
 
-Aplicación web desarrollada en PHP para gestionar tareas con operaciones CRUD, API REST y notificaciones mediante Webhooks.
+Aplicación web para la gestión de tareas desarrollada en **PHP puro**, con operaciones CRUD, API REST y notificaciones mediante **webhooks**. El proyecto está diseñado para ejecutarse **localmente**, con una estructura clara y fácil de entender.
 
-##  Características
+---
 
--  **CRUD completo** de tareas (Crear, Leer, Actualizar, Eliminar)
--  **API REST** con endpoints JSON
--  **Webhooks** para notificar acciones
--  **Sistema de Logs** en archivo local
--  **Base de datos** dividida en dos tablas según requisitos
--  **Interfaz web** moderna y responsive
+## 🚀 Tecnologías utilizadas
 
-##  Requisitos Técnicos
+- **PHP 7.4 o superior**
+- **MySQL / MariaDB**
+- **Apache (XAMPP recomendado)**
+- **HTML + CSS** (frontend simple y funcional)
+- **cURL** (envío de webhooks)
 
-- PHP 7.4 o superior
-- MySQL 5.7+ o MariaDB 10.3+
-- Apache con mod_rewrite
-- Extensión PHP cURL (para webhooks)
-- Extensión PHP PDO MySQL
+---
 
-##  Instalación
+## 📌 Funcionalidades
 
-### 1. Clonar o descargar el proyecto
+- Crear, listar, editar y eliminar tareas
+- Estados de tareas:
+  - Pendiente
+  - En progreso
+  - Completada
+- API REST para consultar tareas
+- Registro de acciones en archivo de logs
+- Envío de webhooks al crear, actualizar o eliminar tareas
+- Interfaz web minimalista
 
-```bash
-# Si es un repositorio Git
-git clone <url-del-repositorio> todo-app
-cd todo-app
+---
 
-# O descomprimir el archivo ZIP en la carpeta del servidor web
+## 📁 Estructura del proyecto
+
+```
+becall-app/
+│
+├── api/                # Endpoints de la API
+├── config/             # Configuración (DB y app)
+├── includes/           # Clases (Database, Tarea, Webhook, Logger)
+├── logs/               # Logs de la aplicación
+├── public/             # Frontend
+│   └── assets/
+│       └── logos/
+├── database.sql        # Script de base de datos
+├── .htaccess
+└── README.md
 ```
 
-### 2. Configurar el servidor web
+---
 
-Coloca el proyecto en tu directorio web:
-- **XAMPP**: `C:\xampp\htdocs\todo-app`
-- **WAMP**: `C:\wamp64\www\todo-app`
-- **LAMP**: `/var/www/html/todo-app`
+## ⚙️ Requisitos
 
-### 3. Crear la base de datos
+Antes de ejecutar el proyecto, asegúrate de contar con:
 
-Accede a phpMyAdmin o usa la terminal de MySQL:
+- PHP **7.4 o superior**
+- MySQL o MariaDB
+- Servidor Apache (XAMPP rec1️⃣ Instalar XAMPP1. aDescarga XAMPP desde:https://www.apachefriends.org
+2. Instálalo con los módulos:
+
+Apahe
+
+My3. SQL
+
+Abre XAMPP Control Panel y aranca:
+✅ Apache
+a XAMPP desde:omendado)
+
+---
+
+## 🛠️ Instalación y ejecución local
+
+### 1️⃣ Clonar el repositorio
 
 ```bash
-mysql -u root -p < database.sql
+git clone https://github.com/erickdavidanaya1/becall-app.git
 ```
 
-O copia y ejecuta el contenido de `database.sql` en phpMyAdmin.
+Ubica el proyecto dentro de:
 
-### 4. Configurar la conexión a la base de datos
+```
+C:\xampp\htdocs\becall-app
+```
 
-Edita el archivo `config/database.php`:
+---
+
+### 2️⃣ Importar la base de datos
+
+1. Abre **phpMyAdmin**
+2. Crea una base de datos llamada:
+
+```
+becall_app
+```
+
+3. Importa el archivo:
+
+```
+database.sql
+```
+
+---
+
+### 3️⃣ Configurar la conexión a la base de datos
+
+Edita el archivo:
+
+```
+config/database.php
+```
+
+Verifica que los datos sean correctos:
 
 ```php
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'becall_app');
-define('DB_USER', 'root');        // Tu usuario de MySQL
-define('DB_PASS', '');            // Tu contraseña de MySQL
+define('DB_USER', 'root');
+define('DB_PASS', '');
 ```
 
-### 5. Configurar permisos (Linux/Mac)
+---
 
-```bash
-chmod 755 logs/
-chmod 644 logs/app.log
+### 4️⃣ Configurar Webhook (opcional)
+
+La aplicación soporta webhooks para notificar las acciones `create`, `update` y `delete`.
+
+1. Ingresa a https://webhook.site
+2. Copia tu **Your Unique URL**
+3. Inserta la URL en la tabla `config` o ejecutando la aplicación y desde http://localhost/becall-app/configuracion.php --> Configuración del Sistema --> URL del Webhook
+y guardar configuración
+
+```sql
+INSERT INTO config (clave, valor)
+VALUES ('webhook_url', 'https://webhook.site/TU-ID');
 ```
 
-### 6. Acceder a la aplicación
+---
 
-Abre tu navegador y visita:
+## 🚀 Ejecutar la aplicación
+
+- **Interfaz web:**
 ```
-http://localhost/todo-app
-```
-
-##  Uso de la Aplicación
-
-### Interfaz Web
-
-1. **Lista de Tareas**: `http://localhost/todo-app/`
-   - Ver todas las tareas
-   - Estadísticas por estado
-   - Editar o eliminar tareas
-
-2. **Crear Tarea**: Click en "+Nueva Tarea"
-   - Completar formulario
-   - Guardar
-
-3. **Configuración**: Click en "Config"
-   - Configurar URL del webhook
-   - Obtener una URL de prueba en [webhook.site](https://webhook.site)
-
-4. **Logs**: Click en "Logs"
-   - Ver todas las acciones registradas
-   - Limpiar logs
-
-### API REST
-
-#### Endpoints disponibles:
-
-**1. Listar todas las tareas**
-```bash
-GET http://localhost/todo-app/api/tareas
-
-# Con filtro por estado
-GET http://localhost/todo-app/api/tareas?estado=pendiente
+http://localhost/becall-app/public/
 ```
 
-**2. Obtener una tarea específica**
-```bash
-GET http://localhost/todo-app/api/tareas/1
+- **API REST (GET):**
+```
+http://localhost/becall-app/api/tareas
 ```
 
-**3. Crear una nueva tarea**
-```bash
-POST http://localhost/todo-app/api/tareas
-Content-Type: application/json
+---
 
-{
-  "titulo": "Nueva tarea de prueba",
-  "descripcion": "Descripción detallada",
-  "fecha_vencimiento": "2026-01-30",
-  "estado": "pendiente"
-}
+## 🔗 API – Endpoint disponible
+
+### Obtener listado de tareas
+
+**GET**
+```
+/api/tareas
 ```
 
-**4. Actualizar una tarea**
-```bash
-PUT http://localhost/todo-app/api/tareas/1
-Content-Type: application/json
+**Respuesta ejemplo:**
 
-{
-  "titulo": "Tarea actualizada",
-  "descripcion": "Nueva descripción",
-  "fecha_vencimiento": "2026-02-01",
-  "estado": "en progreso"
-}
-```
-
-**5. Eliminar una tarea**
-```bash
-DELETE http://localhost/todo-app/api/tareas/1
-```
-
-#### Respuestas de la API
-
-Todas las respuestas incluyen el campo `"saludo": "holi"` según requisitos.
-
-**Ejemplo de respuesta exitosa (GET):**
 ```json
 {
-  "saludo": "holi",
   "data": [
     {
       "id": 1,
       "titulo": "Completar prueba técnica",
-      "descripcion": "Desarrollar aplicación ToDo",
-      "estado": "en progreso",
-      "fecha_creacion": "2026-01-19 10:00:00",
-      "fecha_vencimiento": "2026-01-25"
+      "descripcion": "Desarrollar app ToDo",
+      "estado": "pendiente",
+      "fecha_vencimiento": "2026-01-25",
+      "fecha_creacion": "2026-01-19 21:07:15"
     }
   ]
 }
 ```
 
-**Ejemplo de respuesta de error:**
-```json
-{
-  "saludo": "holi",
-  "error": "Tarea no encontrada"
-}
-```
+---
 
-### Webhooks
+## 🧾 Logs
 
-Cada vez que se realiza una operación (crear, editar, eliminar), se envía automáticamente un POST al webhook configurado:
-
-```json
-{
-  "accion": "create",
-  "fecha_hora": "2026-01-19 14:30:00",
-  "tarea": {
-    "id": 1,
-    "titulo": "Nueva tarea",
-    "descripcion": "Descripción...",
-    "estado": "pendiente",
-    "fecha_creacion": "2026-01-19 14:30:00",
-    "fecha_vencimiento": "2026-01-25"
-  }
-}
-```
-
-**Configurar webhook:**
-1. Visita [webhook.site](https://webhook.site)
-2. Copia tu URL única
-3. Ve a "Config" en la aplicación
-4. Pega la URL y guarda
-
-##  Estructura del Proyecto
+Las acciones importantes del sistema se registran en:
 
 ```
-todo-app/
-├── config/
-│   ├── database.php      # Configuración de BD
-│   └── config.php        # Configuración general
-├── includes/
-│   ├── Database.php      # Clase de conexión
-│   ├── Tarea.php         # Modelo de Tarea (CRUD)
-│   ├── Logger.php        # Sistema de logs
-│   └── Webhook.php       # Envío de webhooks
-├── api/
-│   └── tareas.php        # Endpoints REST
-├── public/
-│   ├── index.php         # Lista de tareas
-│   ├── crear.php         # Crear tarea
-│   ├── editar.php        # Editar tarea
-│   ├── eliminar.php      # Eliminar tarea
-│   ├── configuracion.php # Configurar webhook
-│   ├── logs.php          # Ver logs
-│   └── style.css         # Estilos
-├── logs/
-│   └── app.log           # Archivo de logs
-├── database.sql          # Script SQL
-├── .htaccess             # Configuración Apache
-└── README.md             # Este archivo
+logs/app.log
 ```
 
-## Estructura de Base de Datos
+Incluye:
+- Creación de tareas
+- Actualización
+- Eliminación
+- Errores del sistema
+- Envío de webhooks
 
-### Tabla: Tarea_data
-- `id` (INT, PRIMARY KEY, AUTO_INCREMENT)
-- `fecha_creacion` (DATETIME)
-- `fecha_vencimiento` (DATE)
-- `estado` (ENUM: 'pendiente', 'en progreso', 'completada')
-- `aux1` (VARCHAR(50))
+---
 
-### Tabla: Tarea_dataexten
-- `id` (INT, PRIMARY KEY, FOREIGN KEY)
-- `titulo` (VARCHAR(255))
-- `descripcion` (TEXT)
-- `aux1` (VARCHAR(50))
+## 📝 Notas
 
-### Tabla: config
-- `clave` (VARCHAR(50), PRIMARY KEY)
-- `valor` (TEXT)
-- `descripcion` (VARCHAR(255))
-- `aux1` (VARCHAR(50))
+- No se implementó autenticación, ya que no era requerida
+- El frontend se mantuvo simple de forma intencional
+- El enfoque principal es la lógica backend y la estructura del proyecto
+- El proyecto es fácilmente extensible
 
-## Probar la API con cURL
+---
 
-```bash
-# Listar tareas
-curl http://localhost/todo-app/api/tareas
+## 👤 Autor
 
-# Crear tarea
-curl -X POST http://localhost/todo-app/api/tareas \
-  -H "Content-Type: application/json" \
-  -d '{"titulo":"Tarea de prueba","fecha_vencimiento":"2026-01-30","estado":"pendiente"}'
+**Erick Anaya**  
+Prueba técnica – PHP
 
-# Actualizar tarea
-curl -X PUT http://localhost/todo-app/api/tareas/1 \
-  -H "Content-Type: application/json" \
-  -d '{"titulo":"Tarea actualizada","fecha_vencimiento":"2026-02-01","estado":"completada"}'
-
-# Eliminar tarea
-curl -X DELETE http://localhost/todo-app/api/tareas/1
-```
-
-## 🐛 Solución de Problemas
-
-### Error de conexión a la base de datos
-- Verifica que MySQL esté corriendo
-- Comprueba las credenciales en `config/database.php`
-- Asegúrate de que la base de datos `becall_app` existe
-
-### Los webhooks no se envían
-- Verifica que la extensión cURL esté habilitada en PHP
-- Comprueba que la URL del webhook sea válida
-- Revisa los logs en "📄 Logs"
-
-### Error 404 en la API
-- Verifica que `mod_rewrite` esté habilitado en Apache
-- Comprueba que el archivo `.htaccess` exista
-- Revisa la configuración de Apache para AllowOverride
-
-### Los logs no se guardan
-- Verifica permisos de escritura en la carpeta `logs/`
-- En Linux/Mac: `chmod 755 logs/`
-
-## Notas Adicionales
-
-- La aplicación registra todas las acciones en `logs/app.log`
-- Los webhooks tienen un timeout de 5 segundos
-- La URL del webhook se almacena en la base de datos y puede modificarse desde la interfaz
-- El proyecto usa PHP puro sin frameworks para máxima compatibilidad
-- Se implementó PDO para seguridad contra inyección SQL
-
-## Desarrollo
-
-**Versión**: 1.0.0  
-**Autor**: [Tu Nombre]  
-**Fecha**: Enero 2026  
-**PHP**: 7.4+  
-**Base de Datos**: MySQL
+## 🖼️ Screenshots
+![Home](public/assets/screenshots/01-home.png)
+![Create](public/assets/screenshots/02-create.png)
+![Edit](public/assets/screenshots/03-edit.png)
+![Config](public/assets/screenshots/04-config.png)
+![Logs](public/assets/screenshots/05-logs.png)
