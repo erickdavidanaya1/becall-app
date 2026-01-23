@@ -213,3 +213,4 @@ Prueba técnica – PHP
 ![Edit](public/assets/screenshots/03-edit.png)
 ![Config](public/assets/screenshots/04-config.png)
 ![Logs](public/assets/screenshots/05-logs.png)
+![Logs](public/assets/screenshots/06-database.png)
